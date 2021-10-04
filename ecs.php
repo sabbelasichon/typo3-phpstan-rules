@@ -44,9 +44,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/rector.php',
     ]);
 
-    $parameters->set(Option::SKIP, [
-        DeclareStrictTypesFixer::class => ['*/Fixture/*'],
-    ]);
+    $parameters->set(Option::SKIP, ['*/Fixture/*', '*/Source/*']);
 
     $services = $containerConfigurator->services();
 

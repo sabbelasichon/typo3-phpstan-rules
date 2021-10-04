@@ -24,4 +24,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services = $containerConfigurator->services();
     $services->set(TypedPropertyRector::class);
+
+    $parameters->set(Option::SKIP, ['*/Fixture/*', '*/Source/*']);
 };

@@ -1,6 +1,6 @@
 parameters:
     # see https://phpstan.org/user-guide/output-format#opening-file-in-an-editor
-    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+    editorUrl: "phpstorm://open?file=%%file%%&line=%%line%%"
 
     level: max
 
@@ -11,6 +11,8 @@ parameters:
         - tests
     excludes_analyse:
         - "*/Expected/*"
-        - '*tests/*/Fixture/*'
-        - '*tests/*/Source/*'
-        - '*tests/Source/*'
+        - "*tests/*/Fixture/*"
+        - "*tests/*/Source/*"
+        - "*tests/Source/*"
+    ignoreErrors:
+        - "#Method Ssch(.*?)provide(.*?) return type has no value type specified in iterable type Iterator#"
