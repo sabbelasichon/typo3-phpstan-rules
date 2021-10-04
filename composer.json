@@ -1,0 +1,55 @@
+{
+    "name": "ssch/typo3-phpstan-rules",
+    "description": "Set of PHPStan rules for TYPO3 projects",
+    "type": "library",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "phpstan/phpstan": "^0.12.99",
+        "typo3/cms-core": "^8.7 || ^9.5 || ^10.4 || 11.*.*@dev",
+        "typo3/cms-extbase": "^8.7 || ^9.5 || ^10.4 || 11.*.*@dev"
+    },
+    "require-dev": {
+        "symplify/rule-doc-generator": "^9.3",
+        "symplify/phpstan-extensions": "^9.3",
+        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan-strict-rules": "^0.12.11",
+        "rector/rector": "^0.11.56",
+        "symplify/easy-coding-standard": "^9.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ssch\\Typo3PhpstanRules\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ssch\\Typo3PhpstanRules\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "update-composer": [
+            "@fix-rector",
+            "@fix-style"
+        ],
+        "check-style": "@php ecs check --ansi",
+        "fix-style": "@php ecs check --fix --ansi",
+        "analyze": "@php phpstan analyse --memory-limit=-1 --ansi --error-format symplify",
+        "test": "@php phpunit",
+        "rector": "@php rector process --dry-run --ansi",
+        "fix-rector": "@php rector process --ansi"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "update-with-dependencies": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Sebastian Schreiber",
+            "email": "me@schreibersebastian.de"
+        }
+    ]
+}

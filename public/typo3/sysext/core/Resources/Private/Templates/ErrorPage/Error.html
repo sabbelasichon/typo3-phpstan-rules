@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="robots" content="noindex, follow">
+        <title>{title}</title>
+        <link rel="stylesheet" href="{cssFile}">
+    </head>
+    <body class="t3-message-page t3-{severityCssClass}page-message">
+        <div class="t3-error-wrap">
+            <div class="t3-message-page-container">
+                <div class="t3-message-page-logo">
+                    <img src="{logo}" class="typo3-error-image" alt="TYPO3 logo">
+                </div>
+                <div class="callout callout-danger">
+                    <div class="media">
+                        <div class="media-left">
+                            <span class="icon icon-actions-exclamation-triangle-alt">
+                                <span class="icon-markup">
+                                    <svg class="icon-color" viewBox="0 0 16 16" id="actions-exclamation-triangle-alt">
+                                        <path d="M15.286 12.03L9.749 2.04C9.37 1.352 8.684 1.009 8 1.009s-1.369.343-1.75 1.03L.715 12.03C-.024 13.364.94 15 2.464 15h11.072c1.524 0 2.488-1.636 1.75-2.97zM7.552 5h.896a.5.5 0 01.497.55L8.5 10h-1l-.445-4.45A.5.5 0 017.552 5zM8 13a1 1 0 110-2 1 1 0 010 2z"/>
+                                    </svg>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="alert-title">{title}</h4>
+                            <div class="callout-body">
+                                {message}
+                                <f:if condition="{errorCode} > 0">
+                                    <p>More information regarding this error might be available <a href="{errorCodeUrlPrefix}{errorCode}" target="_blank" rel="noreferrer">online</a>.</p>
+                                </f:if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="t3-footer">
+                    <div id="t3-copyright-notice">
+                        TYPO3 is an open source content management system. To maintain the quality of the system and to improve it, please help us by
+                        donating.
+                        Copyright &copy; {copyrightYear} Kasper Skårhøj. Extensions are copyright of their respective owners. Go to
+                        <a href="https://typo3.org/">https://typo3.org/</a> for details.
+                        TYPO3 CMS comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions.
+                        Obstructing the appearance of this notice is prohibited by law.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
