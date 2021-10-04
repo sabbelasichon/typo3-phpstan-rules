@@ -86,7 +86,6 @@ CODE_SAMPLE
         }
 
         foreach ($classReflection->getTraits() as $traitClass) {
-
         }
 
         $className = $classReflection->getName();
