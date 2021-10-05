@@ -1,0 +1,149 @@
+services:
+    -
+        class: Symplify\PHPStanRules\Rules\AnnotateRegexClassConstWithRegexLinkRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\AnnotateRegexClassConstWithRegexLinkRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\CheckNotTestsNamespaceOutsideTestsDirectoryRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\CheckOptionArgumentCommandRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: Symplify\PHPStanRules\Rules\CheckParentChildMethodParameterTypeCompatibleRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\ConstantMapRuleRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\Domain\EnumSpotterRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\ForbiddenForeachEmptyMissingArrayRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\ForbiddenParamTypeRemovalRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\ForbiddenReturnValueOfIncludeOnceRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\Complexity\ForbiddenSameNamedAssignRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\Complexity\ForbiddenSameNamedNewInstanceRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\Spotter\IfElseToMatchSpotterRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\MatchingTypeConstantRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\NoDefaultExceptionRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\Complexity\NoDuplicatedArgumentRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\NoDynamicNameRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\NoDynamicPropertyOnStaticCallRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\ObjectCalisthenics\Rules\NoElseAndElseIfRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\NoFactoryInConstructorRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\NoFuncCallInMethodCallRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\NoInlineStringRegexRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\NoModifyAndReturnSelfObjectRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\NoParentMethodCallOnEmptyStatementInParentMethodRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\NoProtectedElementInFinalClassRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\NoReturnSetterMethodRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\PrefixAbstractClassRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\PreventDoubleSetParameterRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\PreventParentMethodVisibilityOverrideRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\RegexSuffixInRegexConstantRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\RequireThisCallOnLocalMethodRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\Enum\RequireUniqueEnumConstantRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\RequiredAbstractClassKeywordRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\SuffixInterfaceRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\SuffixTraitRule
+        tags: [phpstan.rules.rule]
+    -
+        class: Symplify\PHPStanRules\Rules\ClassNameRespectsParentSuffixRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            parentClasses:
+                - Symfony\Component\Console\Command\Command
+    -
+        class: Symplify\PHPStanRules\Rules\Enum\EmbeddedEnumClassConstSpotterRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            parentTypes:
+                - TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface
+    -
+        class: Symplify\PHPStanRules\Rules\Enum\ForbiddenClassConstRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            classTypes:
+                - TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+                - TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
+    -
+        class: Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            forbiddenFunctions:
+                - eval
+    -
+        class: Symplify\PHPStanRules\Rules\ForbiddenNodeRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            forbiddenNodes:
+                - PhpParser\Node\Expr\ErrorSuppress
+
+
+#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#nonetteinjectandconstructorrule
+#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#nonetterendermissingvariablerule
+#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#nonetterenderunusedvariablerule
+#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#requireconstantinmethodcallpositionrule
+#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#requiremethodcallargumentconstantrule
+#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#requirenativearraysymfonyrendercallrule
+#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#requirenewargumentconstantrule
+#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#toodeepnewclassnestingrule
+#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#validnetteinjectrule
