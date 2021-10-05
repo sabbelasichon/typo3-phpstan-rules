@@ -40,6 +40,7 @@
         "analyze": "@php phpstan analyse --memory-limit=-1 --ansi",
         "test": "@php phpunit",
         "rector": "@php rector process --dry-run --ansi",
+        "docs": "@php rule-doc-generator generate src/Rules --output-file docs/typo3_rules.md",
         "fix-rector": "@php rector process --ansi"
     },
     "config": {
