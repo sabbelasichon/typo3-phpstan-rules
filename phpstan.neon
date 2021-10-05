@@ -14,5 +14,7 @@ parameters:
         - "*tests/*/Fixture/*"
         - "*tests/*/Source/*"
         - "*tests/Source/*"
+    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         - "#Method Ssch(.*?)provide(.*?) return type has no value type specified in iterable type Iterator#"
+        - "#^PHPDoc tag @extends contains generic type Symplify\\\\PHPStanExtensions\\\\Testing\\\\AbstractServiceAwareRuleTestCase#"
