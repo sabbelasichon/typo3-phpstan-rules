@@ -10,7 +10,6 @@ use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassLike;
 use PhpParser\Node\Stmt\Property;
 use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\ReflectionProvider;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -73,20 +72,15 @@ CODE_SAMPLE
     }
 
     /**
-     * @param Class_ $node
-     *
      * @return string[]
      */
     public function process(Node $node, Scope $scope): array
     {
-        $classReflection = $this->reflectionProvider->getClass($node->namespacedName->toString());
-
-        if (! $classReflection instanceof ClassReflection) {
+        if (! $node instanceof Class_) {
             return [];
         }
 
-        foreach ($classReflection->getTraits() as $traitClass) {
-        }
+        $classReflection = $this->reflectionProvider->getClass($node->namespacedName->toString());
 
         $className = $classReflection->getName();
 

@@ -33,13 +33,13 @@ final class MissingVarAnnotationForPropertyInEntityClassRuleTest extends Abstrac
             ]],
         ];
 
-        yield [
-            __DIR__ . '/Fixture/MissingVarInDocblockFromEntityTrait.php',
-            [[
-                'Missing var annotation for property "anotherProperty" in trait "Ssch\Typo3PhpstanRules\Tests\Rules\MissingDocblockForProperties\Source\EntityTraitWithoutVarAnnotationProperty"',
-                9,
-            ]],
-        ];
+//        yield [
+//            __DIR__ . '/Fixture/MissingVarInDocblockFromEntityTrait.php',
+//            [[
+//                'Missing var annotation for property "anotherProperty" in trait "Ssch\Typo3PhpstanRules\Tests\Rules\MissingDocblockForProperties\Source\EntityTraitWithoutVarAnnotationProperty"',
+//                9,
+//            ]],
+//        ];
 
         yield [
             __DIR__ . '/Fixture/MissingVarInDocblock.php',
