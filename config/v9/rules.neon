@@ -1,2 +1,4 @@
-includes:
-    - ../v8/rules.neon
+services:
+    -
+        class: Ssch\Typo3PhpstanRules\Rules\MissingVarAnnotationForPropertyInEntityClassRule
+        tags: [phpstan.rules.rule]

@@ -3,15 +3,11 @@ services:
         class: Symplify\PHPStanRules\Rules\AnnotateRegexClassConstWithRegexLinkRule
         tags: [phpstan.rules.rule]
     -
-        class: Symplify\PHPStanRules\Rules\AnnotateRegexClassConstWithRegexLinkRule
-        tags: [phpstan.rules.rule]
-    -
         class: Symplify\PHPStanRules\Rules\CheckNotTestsNamespaceOutsideTestsDirectoryRule
         tags: [phpstan.rules.rule]
     -
         class: Symplify\PHPStanRules\Rules\CheckOptionArgumentCommandRule
         tags: [phpstan.rules.rule]
-
     -
         class: Symplify\PHPStanRules\Rules\CheckParentChildMethodParameterTypeCompatibleRule
         tags: [phpstan.rules.rule]
@@ -19,25 +15,7 @@ services:
         class: Symplify\PHPStanRules\Rules\ConstantMapRuleRule
         tags: [phpstan.rules.rule]
     -
-        class: Symplify\PHPStanRules\Rules\Domain\EnumSpotterRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\ForbiddenForeachEmptyMissingArrayRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\ForbiddenParamTypeRemovalRule
-        tags: [phpstan.rules.rule]
-    -
         class: Symplify\PHPStanRules\Rules\ForbiddenReturnValueOfIncludeOnceRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\Complexity\ForbiddenSameNamedAssignRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\Complexity\ForbiddenSameNamedNewInstanceRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\Spotter\IfElseToMatchSpotterRule
         tags: [phpstan.rules.rule]
     -
         class: Symplify\PHPStanRules\Rules\MatchingTypeConstantRule
@@ -46,19 +24,10 @@ services:
         class: Symplify\PHPStanRules\Rules\NoDefaultExceptionRule
         tags: [phpstan.rules.rule]
     -
-        class: Symplify\PHPStanRules\Rules\Complexity\NoDuplicatedArgumentRule
-        tags: [phpstan.rules.rule]
-    -
         class: Symplify\PHPStanRules\Rules\NoDynamicNameRule
         tags: [phpstan.rules.rule]
     -
         class: Symplify\PHPStanRules\Rules\NoDynamicPropertyOnStaticCallRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\ObjectCalisthenics\Rules\NoElseAndElseIfRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\NoFactoryInConstructorRule
         tags: [phpstan.rules.rule]
     -
         class: Symplify\PHPStanRules\Rules\NoFuncCallInMethodCallRule
@@ -71,12 +40,6 @@ services:
         tags: [phpstan.rules.rule]
     -
         class: Symplify\PHPStanRules\Rules\NoParentMethodCallOnEmptyStatementInParentMethodRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\NoProtectedElementInFinalClassRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\NoReturnSetterMethodRule
         tags: [phpstan.rules.rule]
     -
         class: Symplify\PHPStanRules\Rules\PrefixAbstractClassRule
@@ -94,9 +57,6 @@ services:
         class: Symplify\PHPStanRules\Rules\RequireThisCallOnLocalMethodRule
         tags: [phpstan.rules.rule]
     -
-        class: Symplify\PHPStanRules\Rules\Enum\RequireUniqueEnumConstantRule
-        tags: [phpstan.rules.rule]
-    -
         class: Symplify\PHPStanRules\Rules\RequiredAbstractClassKeywordRule
         tags: [phpstan.rules.rule]
     -
@@ -111,19 +71,6 @@ services:
         arguments:
             parentClasses:
                 - Symfony\Component\Console\Command\Command
-    -
-        class: Symplify\PHPStanRules\Rules\Enum\EmbeddedEnumClassConstSpotterRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            parentTypes:
-                - TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface
-    -
-        class: Symplify\PHPStanRules\Rules\Enum\ForbiddenClassConstRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            classTypes:
-                - TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-                - TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule
         tags: [phpstan.rules.rule]
