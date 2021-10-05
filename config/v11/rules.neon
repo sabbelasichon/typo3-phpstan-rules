@@ -1,0 +1,4 @@
+services:
+    -
+        class: Symplify\PHPStanRules\Rules\NoFactoryInConstructorRule
+        tags: [phpstan.rules.rule]
