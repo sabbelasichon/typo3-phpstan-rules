@@ -1,5 +1,8 @@
 services:
     -
+        class: Symplify\PHPStanRules\Rules\UppercaseConstantRule
+        tags: [phpstan.rules.rule]
+    -
         class: Symplify\PHPStanRules\Rules\AnnotateRegexClassConstWithRegexLinkRule
         tags: [phpstan.rules.rule]
     -
@@ -83,14 +86,24 @@ services:
         arguments:
             forbiddenNodes:
                 - PhpParser\Node\Expr\ErrorSuppress
-
-
+    -
+        class: Symplify\PHPStanRules\Rules\RequireConstantInMethodCallPositionRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            requiredExternalConstantInMethodCall:
+                TYPO3\CMS\Extbase\Mvc\Controller\ActionController:
+                    addFlashMessage:
+                        - 2
+    -
+        class: Symplify\PHPStanRules\Rules\Enum\RequireNewArgumentConstantRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            constantArgByNewByType:
+                Symfony\Component\Console\Input\InputOption:
+                    - 2
+    -
+        class: Symplify\PHPStanRules\Rules\TooDeepNewClassNestingRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            maxNewClassNesting: 2
 #https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#nonetteinjectandconstructorrule
-#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#nonetterendermissingvariablerule
-#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#nonetterenderunusedvariablerule
-#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#requireconstantinmethodcallpositionrule
-#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#requiremethodcallargumentconstantrule
-#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#requirenativearraysymfonyrendercallrule
-#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#requirenewargumentconstantrule
-#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#toodeepnewclassnestingrule
-#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#validnetteinjectrule
