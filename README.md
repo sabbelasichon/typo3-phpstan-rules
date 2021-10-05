@@ -1,3 +1,5 @@
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/schreiberten)
+
 # TYPO3 PHPStan Rules
 
 Set of (opinionated) rules for PHPStan in TYPO3 Projects
