@@ -33,8 +33,6 @@ final class MissingVarAnnotationForPropertyInEntityClassRuleTest extends Abstrac
             ]],
         ];
 
-
-
         yield [
             __DIR__ . '/Fixture/MissingVarInDocblock.php',
             [[
