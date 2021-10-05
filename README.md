@@ -2,7 +2,7 @@
 
 Set of rules for PHPStan for TYPO3 Projects
 
-- See [Rules Overview](docs/rules_overview.md)
+- See [Rules Overview](docs/typo3_rules.md)
 
 ## Install
 
