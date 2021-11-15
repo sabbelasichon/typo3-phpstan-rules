@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Ssch\Typo3PhpstanRules\Rules;
 
-use PhpParser\Comment\Doc;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
-use PhpParser\Node\Stmt\ClassLike;
 use PhpParser\Node\Stmt\Property;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ReflectionProvider;
@@ -16,18 +14,12 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
 
-final class MissingVarAnnotationForPropertyInEntityClassRule extends AbstractSymplifyRule
+final class MissingDefaultValueForTypedPropertyRule extends AbstractSymplifyRule
 {
     /**
      * @var string
      */
-    public const ERROR_MESSAGE = 'Missing var annotation for property "%s" in class "%s"';
-
-    /**
-     * @see https://regex101.com/r/FxdlWN/1
-     * @var string
-     */
-    public const VAR_TAG_REGEX = '#\*\s+@var\s+.*\n?#';
+    public const ERROR_MESSAGE = 'Missing default value for property "%s" in class "%s"';
 
     private ReflectionProvider $reflectionProvider;
 
@@ -41,19 +33,16 @@ final class MissingVarAnnotationForPropertyInEntityClassRule extends AbstractSym
         return new RuleDefinition(self::ERROR_MESSAGE, [
             new CodeSample(
                 <<<'CODE_SAMPLE'
-final class MissingDocblock extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+final class MissingDefaultValueForTypedProperty extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-    protected ?string $property = null;
+    protected string $property;
 }
 CODE_SAMPLE
                 ,
                 <<<'CODE_SAMPLE'
-final class MissingDocblock extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+final class MissingDefaultValueForTypedProperty extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-    /**
-     * @var string|null
-     */
-    protected ?string $property = null;
+    protected string $property = '';
 }
 CODE_SAMPLE
             ),
@@ -65,7 +54,7 @@ CODE_SAMPLE
      */
     public function getNodeTypes(): array
     {
-        return [ClassLike::class];
+        return [Class_::class];
     }
 
     /**
@@ -86,12 +75,7 @@ CODE_SAMPLE
         }
 
         foreach ($node->getProperties() as $property) {
-            $docComment = $property->getDocComment();
-            if (! $docComment instanceof Doc) {
-                return [$this->createErrorMessage($property, $className)];
-            }
-
-            if ($this->containsVarAnnotationInDoc($docComment)) {
+            if ($this->shouldSkipProperty($property)) {
                 continue;
             }
 
@@ -101,15 +85,21 @@ CODE_SAMPLE
         return [];
     }
 
-    private function containsVarAnnotationInDoc(Doc $docComment): bool
-    {
-        return 1 === preg_match(self::VAR_TAG_REGEX, $docComment->getText());
-    }
-
     private function createErrorMessage(Property $node, string $className): string
     {
         $propertyProperty = $node->props[0];
 
         return sprintf(self::ERROR_MESSAGE, $propertyProperty->name, $className);
+    }
+
+    private function shouldSkipProperty(Property $property): bool
+    {
+        if (null === $property->type) {
+            return true;
+        }
+
+        $propertyProperty = $property->props[0];
+
+        return null !== $propertyProperty->default;
     }
 }

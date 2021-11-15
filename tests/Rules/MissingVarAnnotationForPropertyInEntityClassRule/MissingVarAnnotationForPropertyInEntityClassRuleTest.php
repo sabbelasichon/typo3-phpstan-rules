@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ssch\Typo3PhpstanRules\Tests\Rules\MissingDocblockForProperties;
+namespace Ssch\Typo3PhpstanRules\Tests\Rules\MissingVarAnnotationForPropertyInEntityClassRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
@@ -28,7 +28,7 @@ final class MissingVarAnnotationForPropertyInEntityClassRuleTest extends Abstrac
         yield [
             __DIR__ . '/Fixture/MissingDocblock.php',
             [[
-                'Missing var annotation for property "property" in class "Ssch\Typo3PhpstanRules\Tests\Rules\MissingDocblockForProperties\Fixture\MissingDocblock"',
+                'Missing var annotation for property "property" in class "Ssch\Typo3PhpstanRules\Tests\Rules\MissingVarAnnotationForPropertyInEntityClassRule\Fixture\MissingDocblock"',
                 7,
             ]],
         ];
@@ -36,7 +36,7 @@ final class MissingVarAnnotationForPropertyInEntityClassRuleTest extends Abstrac
         yield [
             __DIR__ . '/Fixture/MissingVarInDocblock.php',
             [[
-                'Missing var annotation for property "property" in class "Ssch\Typo3PhpstanRules\Tests\Rules\MissingDocblockForProperties\Fixture\MissingVarInDocblock"',
+                'Missing var annotation for property "property" in class "Ssch\Typo3PhpstanRules\Tests\Rules\MissingVarAnnotationForPropertyInEntityClassRule\Fixture\MissingVarInDocblock"',
                 7,
             ]],
         ];
