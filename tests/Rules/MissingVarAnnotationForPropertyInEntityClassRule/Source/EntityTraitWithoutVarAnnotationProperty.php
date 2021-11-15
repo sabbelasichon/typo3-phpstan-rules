@@ -1,6 +1,6 @@
 <?php
 
-namespace Ssch\Typo3PhpstanRules\Tests\Rules\MissingDocblockForProperties\Source;
+namespace Ssch\Typo3PhpstanRules\Tests\Rules\MissingVarAnnotationForPropertyInEntityClassRule\Source;
 
 trait EntityTraitWithoutVarAnnotationProperty
 {
