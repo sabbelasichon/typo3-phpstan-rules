@@ -106,4 +106,6 @@ services:
         tags: [phpstan.rules.rule]
         arguments:
             maxNewClassNesting: 2
-#https://github.com/symplify/phpstan-rules/blob/main/docs/rules_overview.md#nonetteinjectandconstructorrule
+    -
+        class: Ssch\Typo3PhpstanRules\Rules\DoNotUseDeclareInConfigurationFilesRule
+        tags: [phpstan.rules.rule]
