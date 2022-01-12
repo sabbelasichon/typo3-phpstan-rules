@@ -109,3 +109,6 @@ services:
     -
         class: Ssch\Typo3PhpstanRules\Rules\DoNotUseDeclareInConfigurationFilesRule
         tags: [phpstan.rules.rule]
+    -
+        class: Ssch\Typo3PhpstanRules\Rules\DoNotUseMagicConstantFileAndDirInConfigurationFilesRule
+        tags: [phpstan.rules.rule]

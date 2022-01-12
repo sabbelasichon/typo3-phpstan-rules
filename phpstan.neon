@@ -12,6 +12,8 @@ parameters:
     excludePaths:
         - "*/Expected/*"
         - "*tests/*/Fixture/*"
+        - "*tests/*/MyExtension/*"
+        - "*tests/*/MySecondExtension/*"
         - "*tests/*/Source/*"
         - "*tests/Source/*"
     reportUnmatchedIgnoredErrors: false
