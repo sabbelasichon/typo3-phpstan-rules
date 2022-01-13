@@ -41,9 +41,7 @@ final class DoNotUseMagicConstantFileAndDirInConfigurationFilesRule extends Abst
 __DIR__ . '/Resources/Private/Templates/Template.html;
 CODE_SAMPLE
                 ,
-                <<<'CODE_SAMPLE'
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('my_extension') . '/Resources/Private/Templates/Template.html;
-CODE_SAMPLE
+                \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::class . '::extPath(\'my_extension\') . \'/Resources/Private/Templates/Template.html;'
             ),
         ]);
     }

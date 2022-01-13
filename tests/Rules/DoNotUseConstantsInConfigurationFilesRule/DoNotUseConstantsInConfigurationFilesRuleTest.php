@@ -27,7 +27,9 @@ final class DoNotUseConstantsInConfigurationFilesRuleTest extends AbstractServic
     {
         $invalidFile = __DIR__ . '/MyExtension/ext_tables.php';
 
-        yield [$invalidFile, [[sprintf('Do not use declare statements in file "%s"', $invalidFile), 3]]];
+        yield [
+            $invalidFile,
+            [[sprintf('Do not use constant TYPO3_MODE or TYPO3_REQUESTTYPE in file "%s"', $invalidFile), 3]], ];
     }
 
     protected function getRule(): Rule

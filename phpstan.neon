@@ -9,7 +9,7 @@ parameters:
         - ecs.php
         - src
         - tests
-    excludePaths:
+    excludes_analyse:
         - "*/Expected/*"
         - "*tests/*/Fixture/*"
         - "*tests/*/MyExtension/*"

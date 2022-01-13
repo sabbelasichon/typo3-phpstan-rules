@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Ssch\Typo3PhpstanRules\Rules;
 
 use PhpParser\Node;
-use PhpParser\Node\Const_;
+use PhpParser\Node\Expr\ConstFetch;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\RuleError;
 use Ssch\Typo3PhpstanRules\FileResolver;
-use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -23,12 +22,9 @@ final class DoNotUseConstantsInConfigurationFilesRule extends AbstractSymplifyRu
 
     private FileResolver $fileResolver;
 
-    private SimpleNameResolver $simpleNameResolver;
-
-    public function __construct(FileResolver $fileResolver, SimpleNameResolver $simpleNameResolver)
+    public function __construct(FileResolver $fileResolver)
     {
         $this->fileResolver = $fileResolver;
-        $this->simpleNameResolver = $simpleNameResolver;
     }
 
     public function getRuleDefinition(): RuleDefinition
@@ -36,19 +32,20 @@ final class DoNotUseConstantsInConfigurationFilesRule extends AbstractSymplifyRu
         return new RuleDefinition(
             'Do not use constants TYPO3_MODE and TYPO3_REQUESTTYPE in ext_localconf.php or ext_tables.php',
             [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
+                new CodeSample(
+                    <<<'CODE_SAMPLE'
 if (TYPO3_MODE === 'BE') {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][$packageKey] = \Prefix\MyExtension\PageRendererHooks::class . '->renderPreProcess';
 }
 CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
+                    ,
+                    <<<'CODE_SAMPLE'
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][$packageKey] = \Prefix\MyExtension\PageRendererHooks::class . '->renderPreProcess';
 CODE_SAMPLE
-            ),
-        
-        ]);
+                ),
+
+            ]
+        );
     }
 
     /**
@@ -56,7 +53,7 @@ CODE_SAMPLE
      */
     public function getNodeTypes(): array
     {
-        return [Const_::class];
+        return [Node\Expr\ConstFetch::class];
     }
 
     /**
@@ -68,11 +65,13 @@ CODE_SAMPLE
             return [];
         }
 
-        if (! $node instanceof Const_) {
+        if (! $node instanceof ConstFetch) {
             return [];
         }
 
-        if (! $this->simpleNameResolver->isNames($node->name, ['TYPO3_MODE', 'TYPO3_REQUESTTYPE'])) {
+        $constFetchName = $node->name->toString();
+
+        if (! in_array($constFetchName, ['TYPO3_MODE', 'TYPO3_REQUESTTYPE'], true)) {
             return [];
         }
 
