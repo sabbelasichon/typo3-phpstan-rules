@@ -1,4 +1,98 @@
-# 2 Rules Overview
+# 6 Rules Overview
+
+## DoNotUseConstantsInConfigurationFilesRule
+
+Do not use constants TYPO3_MODE and TYPO3_REQUESTTYPE in ext_localconf.php or ext_tables.php
+
+- class: [`Ssch\Typo3PhpstanRules\Rules\DoNotUseConstantsInConfigurationFilesRule`](../src/Rules/DoNotUseConstantsInConfigurationFilesRule.php)
+
+```php
+if (TYPO3_MODE === 'BE') {
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][$packageKey] = \Prefix\MyExtension\PageRendererHooks::class . '->renderPreProcess';
+}
+```
+
+:x:
+
+<br>
+
+```php
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][$packageKey] = \Prefix\MyExtension\PageRendererHooks::class . '->renderPreProcess';
+```
+
+:+1:
+
+<br>
+
+## DoNotUseDeclareInConfigurationFilesRule
+
+Do not use declare statements in ext_localconf.php or ext_tables.php
+
+- class: [`Ssch\Typo3PhpstanRules\Rules\DoNotUseDeclareInConfigurationFilesRule`](../src/Rules/DoNotUseDeclareInConfigurationFilesRule.php)
+
+```php
+declare(strict_types=1)
+
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][$packageKey] = \Prefix\MyExtension\PageRendererHooks::class . '->renderPreProcess';
+```
+
+:x:
+
+<br>
+
+```php
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][$packageKey] = \Prefix\MyExtension\PageRendererHooks::class . '->renderPreProcess';
+```
+
+:+1:
+
+<br>
+
+## DoNotUseMagicConstantFileAndDirInConfigurationFilesRule
+
+Do not use __FILE__ constant in ext_localconf.php or ext_tables.php
+
+- class: [`Ssch\Typo3PhpstanRules\Rules\DoNotUseMagicConstantFileAndDirInConfigurationFilesRule`](../src/Rules/DoNotUseMagicConstantFileAndDirInConfigurationFilesRule.php)
+
+```php
+__DIR__ . '/Resources/Private/Templates/Template.html;
+```
+
+:x:
+
+<br>
+
+```php
+TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('my_extension') . '/Resources/Private/Templates/Template.html;
+```
+
+:+1:
+
+<br>
+
+## DoNotUseUseInConfigurationFilesRule
+
+Do not use statements but FQN in ext_localconf.php or ext_tables.php
+
+- class: [`Ssch\Typo3PhpstanRules\Rules\DoNotUseUseInConfigurationFilesRule`](../src/Rules/DoNotUseUseInConfigurationFilesRule.php)
+
+```php
+use \Prefix\MyExtension\PageRendererHooks;
+
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][$packageKey] = PageRendererHooks::class . '->renderPreProcess';
+```
+
+:x:
+
+<br>
+
+```php
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][$packageKey] = \Prefix\MyExtension\PageRendererHooks::class . '->renderPreProcess';
+```
+
+:+1:
+
+<br>
 
 ## MissingDefaultValueForTypedPropertyRule
 
