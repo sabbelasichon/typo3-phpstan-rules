@@ -1,0 +1,2 @@
+services:
+    - Ssch\Typo3PhpstanRules\FileResolver

@@ -3,3 +3,4 @@
 .phpunit.cache
 public
 composer.lock
+.phpunit.result.cache
