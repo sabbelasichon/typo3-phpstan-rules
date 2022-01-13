@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ssch\Typo3PhpstanRules\Tests\Rules\DoNotUseMagicConstantFileAndDirInConfigurationFilesRuleTest;
+namespace Ssch\Typo3PhpstanRules\Tests\Rules\DoNotUseMagicConstantFileAndDirInConfigurationFilesRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;

@@ -44,7 +44,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/rector.php',
     ]);
 
-    $parameters->set(Option::SKIP, ['*/Fixture/*', '*/Source/*']);
+    $parameters->set(Option::SKIP, ['*/Fixture/*', '*/Source/*', '*/MyExtension/*', '*/MySecondExtension/*']);
 
     $services = $containerConfigurator->services();
 
