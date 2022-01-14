@@ -1,4 +1,4 @@
-# 6 Rules Overview
+# 7 Rules Overview
 
 ## DoNotUseConstantsInConfigurationFilesRule
 
@@ -42,6 +42,28 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php'][
 
 ```php
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][$packageKey] = \Prefix\MyExtension\PageRendererHooks::class . '->renderPreProcess';
+```
+
+:+1:
+
+<br>
+
+## DoNotUseImplicitVariableInConfigurationFilesRule
+
+Do not use $_EXTKEY and $_EXTCONF in ext_localconf.php or ext_tables.php
+
+- class: [`Ssch\Typo3PhpstanRules\Rules\DoNotUseImplicitVariableInConfigurationFilesRule`](../src/Rules/DoNotUseImplicitVariableInConfigurationFilesRule.php)
+
+```php
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][$_EXTKEY] = \Prefix\MyExtension\PageRendererHooks::class . '->renderPreProcess';
+```
+
+:x:
+
+<br>
+
+```php
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess']['my_extension_key'] = \Prefix\MyExtension\PageRendererHooks::class . '->renderPreProcess';
 ```
 
 :+1:
@@ -96,7 +118,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php'][
 
 ## MissingDefaultValueForTypedPropertyRule
 
-Missing default value for property "%s" in class "%s"
+Missing default value for property "property" in class "MissingDefaultValueForTypedProperty"
 
 - class: [`Ssch\Typo3PhpstanRules\Rules\MissingDefaultValueForTypedPropertyRule`](../src/Rules/MissingDefaultValueForTypedPropertyRule.php)
 
@@ -124,7 +146,7 @@ final class MissingDefaultValueForTypedProperty extends \TYPO3\CMS\Extbase\Domai
 
 ## MissingVarAnnotationForPropertyInEntityClassRule
 
-Missing var annotation for property "%s" in class "%s"
+Missing var annotation for property "property" in class "MissingDocblock"
 
 - class: [`Ssch\Typo3PhpstanRules\Rules\MissingVarAnnotationForPropertyInEntityClassRule`](../src/Rules/MissingVarAnnotationForPropertyInEntityClassRule.php)
 
