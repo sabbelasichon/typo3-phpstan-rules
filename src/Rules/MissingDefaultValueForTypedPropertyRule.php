@@ -29,23 +29,27 @@ final class MissingDefaultValueForTypedPropertyRule extends AbstractSymplifyRule
 
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
+        return new RuleDefinition(
+            'Missing default value for property "property" in class "MissingDefaultValueForTypedProperty"',
+            [
+                new CodeSample(
+                    <<<'CODE_SAMPLE'
 final class MissingDefaultValueForTypedProperty extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     protected string $property;
 }
 CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
+                    ,
+                    <<<'CODE_SAMPLE'
 final class MissingDefaultValueForTypedProperty extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     protected string $property = '';
 }
 CODE_SAMPLE
-            ),
-        ]);
+                ),
+
+            ]
+        );
     }
 
     /**
