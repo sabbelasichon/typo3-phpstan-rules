@@ -1,2 +1,3 @@
 services:
     - Ssch\Typo3PhpstanRules\FileResolver
+    - Ssch\Typo3PhpstanRules\NodeAnalyzer\Extbase\EntityClassDetector

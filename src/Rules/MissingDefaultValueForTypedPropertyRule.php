@@ -8,11 +8,10 @@ use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Property;
 use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\ReflectionProvider;
+use Ssch\Typo3PhpstanRules\NodeAnalyzer\Extbase\EntityClassDetector;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
-use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
 
 final class MissingDefaultValueForTypedPropertyRule extends AbstractSymplifyRule
 {
@@ -21,11 +20,11 @@ final class MissingDefaultValueForTypedPropertyRule extends AbstractSymplifyRule
      */
     public const ERROR_MESSAGE = 'Missing default value for property "%s" in class "%s"';
 
-    private ReflectionProvider $reflectionProvider;
+    private EntityClassDetector $entityClassDetector;
 
-    public function __construct(ReflectionProvider $reflectionProvider)
+    public function __construct(EntityClassDetector $entityClassDetector)
     {
-        $this->reflectionProvider = $reflectionProvider;
+        $this->entityClassDetector = $entityClassDetector;
     }
 
     public function getRuleDefinition(): RuleDefinition
@@ -66,11 +65,7 @@ CODE_SAMPLE
             return [];
         }
 
-        $classReflection = $this->reflectionProvider->getClass($node->namespacedName->toString());
-
-        $className = $classReflection->getName();
-
-        if (! $classReflection->implementsInterface(DomainObjectInterface::class)) {
+        if (! $this->entityClassDetector->isInsideExtbaseEntity($node)) {
             return [];
         }
 
@@ -79,7 +74,7 @@ CODE_SAMPLE
                 continue;
             }
 
-            return [$this->createErrorMessage($property, $className)];
+            return [$this->createErrorMessage($property, $node->namespacedName->toString())];
         }
 
         return [];
