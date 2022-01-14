@@ -37,7 +37,7 @@ final class MissingVarAnnotationForPropertyInEntityClassRule extends AbstractSym
 
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
+        return new RuleDefinition('Missing var annotation for property "property" in class "MissingDocblock"', [
             new CodeSample(
                 <<<'CODE_SAMPLE'
 final class MissingDocblock extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
