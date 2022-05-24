@@ -4,3 +4,4 @@
 public
 composer.lock
 .phpunit.result.cache
+phpstan-temp.neon

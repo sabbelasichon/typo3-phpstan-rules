@@ -1,0 +1,6 @@
+includes:
+    - ../../../config/included_services.neon
+
+rules:
+    - Ssch\Typo3PhpstanRules\Rules\DoNotUseNullableConstructorRule
+
