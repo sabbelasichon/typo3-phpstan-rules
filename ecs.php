@@ -2,53 +2,39 @@
 
 declare(strict_types=1);
 
+use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 use PhpCsFixer\Fixer\ControlStructure\YodaStyleFixer;
 use PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer;
 use PhpCsFixer\Fixer\Phpdoc\NoSuperfluousPhpdocTagsFixer;
 use PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\StandaloneLineInMultilineArrayFixer;
 use Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer;
-use Symplify\EasyCodingStandard\ValueObject\Option;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $services = $containerConfigurator->services();
-    $services->set(StandaloneLineInMultilineArrayFixer::class);
-    $services->set(ArrayOpenerAndCloserNewlineFixer::class);
+return static function (ECSConfig $ecsConfig): void {
+    $ecsConfig->paths([__DIR__ . '/src', __DIR__ . '/tests']);
 
-    $services->set(GeneralPhpdocAnnotationRemoveFixer::class)
-        ->call('configure', [[
-            'annotations' => ['throws', 'author', 'package', 'group'],
-        ]]);
-
-    $services->set(LineLengthFixer::class);
-
-    $services->set(NoSuperfluousPhpdocTagsFixer::class)
-        ->call('configure', [[
-            'allow_mixed' => true,
-        ]]);
-
-    $parameters = $containerConfigurator->parameters();
-
-    $containerConfigurator->import(SetList::PSR_12);
-    $containerConfigurator->import(SetList::SYMPLIFY);
-    $containerConfigurator->import(SetList::COMMON);
-    $containerConfigurator->import(SetList::CLEAN_CODE);
-
-    $parameters->set(Option::PATHS, [
-        __DIR__ . '/src',
-        __DIR__ . '/tests',
-        __DIR__ . '/ecs.php',
-        __DIR__ . '/rector.php',
+    $ecsConfig->rule(StandaloneLineInMultilineArrayFixer::class);
+    $ecsConfig->rule(LineLengthFixer::class);
+    $ecsConfig->rule(ArrayOpenerAndCloserNewlineFixer::class);
+    $ecsConfig->ruleWithConfiguration(ArraySyntaxFixer::class, [
+        'syntax' => 'short',
+    ]);
+    $ecsConfig->rule(DeclareStrictTypesFixer::class);
+    $ecsConfig->rule(LineLengthFixer::class);
+    $ecsConfig->rule(YodaStyleFixer::class);
+    $ecsConfig->ruleWithConfiguration(GeneralPhpdocAnnotationRemoveFixer::class, [
+        'annotations' => ['throws', 'author', 'package', 'group'],
+    ]);
+    $ecsConfig->ruleWithConfiguration(NoSuperfluousPhpdocTagsFixer::class, [
+        'allow_mixed' => true,
     ]);
 
-    $parameters->set(Option::SKIP, ['*/Fixture/*', '*/Source/*', '*/MyExtension/*', '*/MySecondExtension/*']);
+    $ecsConfig->sets([SetList::PSR_12, SetList::SYMPLIFY, SetList::COMMON, SetList::CLEAN_CODE]);
 
-    $services = $containerConfigurator->services();
+    $ecsConfig->paths([__DIR__ . '/src', __DIR__ . '/tests', __DIR__ . '/ecs.php', __DIR__ . '/rector.php']);
 
-    $services->set(DeclareStrictTypesFixer::class);
-    $services->set(LineLengthFixer::class);
-    $services->set(YodaStyleFixer::class);
+    $ecsConfig->skip(['*/Fixture/*', '*/Source/*', '*/MyExtension/*', '*/MySecondExtension/*']);
 };

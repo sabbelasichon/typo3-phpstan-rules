@@ -12,6 +12,6 @@ final class FileResolver
     {
         $fileName = basename($scope->getFile());
 
-        return 'ext_tables.php' === $fileName || 'ext_localconf.php' === $fileName;
+        return $fileName === 'ext_tables.php' || $fileName === 'ext_localconf.php';
     }
 }

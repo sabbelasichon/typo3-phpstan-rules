@@ -8,12 +8,16 @@ use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Property;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use Ssch\Typo3PhpstanRules\NodeAnalyzer\Extbase\EntityClassDetector;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
+use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
-final class MissingDefaultValueForTypedPropertyRule extends AbstractSymplifyRule
+/**
+ * @implements Rule<Class_>
+ */
+final class MissingDefaultValueForTypedPropertyRule implements Rule, DocumentedRuleInterface
 {
     /**
      * @var string
@@ -52,23 +56,16 @@ CODE_SAMPLE
         );
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [Class_::class];
+        return Class_::class;
     }
 
     /**
      * @return string[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
-        if (! $node instanceof Class_) {
-            return [];
-        }
-
         if (! $this->entityClassDetector->isInsideExtbaseEntity($node)) {
             return [];
         }
@@ -93,12 +90,12 @@ CODE_SAMPLE
 
     private function shouldSkipProperty(Property $property): bool
     {
-        if (null === $property->type) {
+        if ($property->type === null) {
             return true;
         }
 
         $propertyProperty = $property->props[0];
 
-        return null !== $propertyProperty->default;
+        return $propertyProperty->default !== null;
     }
 }

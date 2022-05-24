@@ -10,12 +10,16 @@ use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassLike;
 use PhpParser\Node\Stmt\Property;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use Ssch\Typo3PhpstanRules\NodeAnalyzer\Extbase\EntityClassDetector;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
+use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
-final class MissingVarAnnotationForPropertyInEntityClassRule extends AbstractSymplifyRule
+/**
+ * @implements Rule<ClassLike>
+ */
+final class MissingVarAnnotationForPropertyInEntityClassRule implements Rule, DocumentedRuleInterface
 {
     /**
      * @var string
@@ -59,18 +63,15 @@ CODE_SAMPLE
         ]);
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [ClassLike::class];
+        return ClassLike::class;
     }
 
     /**
      * @return string[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         if (! $node instanceof Class_) {
             return [];
@@ -100,7 +101,7 @@ CODE_SAMPLE
 
     private function containsVarAnnotationInDoc(Doc $docComment): bool
     {
-        return 1 === preg_match(self::VAR_TAG_REGEX, $docComment->getText());
+        return preg_match(self::VAR_TAG_REGEX, $docComment->getText()) === 1;
     }
 
     private function createErrorMessage(Property $node, string $className): string

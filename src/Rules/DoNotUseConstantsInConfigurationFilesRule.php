@@ -7,13 +7,16 @@ namespace Ssch\Typo3PhpstanRules\Rules;
 use PhpParser\Node;
 use PhpParser\Node\Expr\ConstFetch;
 use PHPStan\Analyser\Scope;
-use PHPStan\Rules\RuleError;
+use PHPStan\Rules\Rule;
 use Ssch\Typo3PhpstanRules\FileResolver;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
+use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
-final class DoNotUseConstantsInConfigurationFilesRule extends AbstractSymplifyRule
+/**
+ * @implements Rule<ConstFetch>
+ */
+final class DoNotUseConstantsInConfigurationFilesRule implements Rule, DocumentedRuleInterface
 {
     /**
      * @var string
@@ -48,24 +51,14 @@ CODE_SAMPLE
         );
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [Node\Expr\ConstFetch::class];
+        return ConstFetch::class;
     }
 
-    /**
-     * @return array<string|RuleError>
-     */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         if (! $this->fileResolver->isConfigurationFile($scope)) {
-            return [];
-        }
-
-        if (! $node instanceof ConstFetch) {
             return [];
         }
 
