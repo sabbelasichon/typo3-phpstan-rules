@@ -6,8 +6,8 @@
         "php": "^8.0",
         "phpstan/phpstan": "^1.7",
         "symplify/phpstan-rules": "^10.0",
-        "typo3/cms-core": "^8.7 || ^9.5 || ^10.4 || 11.*.*@dev",
-        "typo3/cms-extbase": "^8.7 || ^9.5 || ^10.4 || 11.*.*@dev"
+        "typo3/cms-core": "^8.7 || ^9.5 || ^10.4 || 11.5",
+        "typo3/cms-extbase": "^8.7 || ^9.5 || ^10.4 || 11.5"
     },
     "require-dev": {
         "phpstan/extension-installer": "^1.1",
