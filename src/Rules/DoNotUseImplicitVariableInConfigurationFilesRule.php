@@ -7,12 +7,16 @@ namespace Ssch\Typo3PhpstanRules\Rules;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use Ssch\Typo3PhpstanRules\FileResolver;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
+use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
-final class DoNotUseImplicitVariableInConfigurationFilesRule extends AbstractSymplifyRule
+/**
+ * @implements Rule<Variable>
+ */
+final class DoNotUseImplicitVariableInConfigurationFilesRule implements Rule, DocumentedRuleInterface
 {
     /**
      * @var string
@@ -46,17 +50,13 @@ CODE_SAMPLE
         ]);
     }
 
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [Node\Expr\Variable::class];
+        return Variable::class;
     }
 
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
-        if (! $node instanceof Variable) {
-            return [];
-        }
-
         if (! $this->fileResolver->isConfigurationFile($scope)) {
             return [];
         }

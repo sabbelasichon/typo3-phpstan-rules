@@ -16,8 +16,7 @@ final class DoNotUseImplicitVariableInConfigurationFilesRuleTest extends Abstrac
 {
     /**
      * @dataProvider provideData()
-     *
-     * @param array<string|int> $expectedErrorMessagesWithLines
+     * @param list<array{0: string, 1: int, 2?: string}> $expectedErrorMessagesWithLines
      */
     public function testRule(string $filePath, array $expectedErrorMessagesWithLines): void
     {

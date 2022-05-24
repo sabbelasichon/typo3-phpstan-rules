@@ -15,6 +15,9 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use Symplify\PackageBuilder\ValueObject\MethodName;
 
+/**
+ * @implements Rule<ClassMethod>
+ */
 final class DoNotUseNullableConstructorRule implements Rule
 {
     public function getNodeType(): string
@@ -22,9 +25,6 @@ final class DoNotUseNullableConstructorRule implements Rule
         return ClassMethod::class;
     }
 
-    /**
-     * @param ClassMethod $node
-     */
     public function processNode(Node $node, Scope $scope): array
     {
         if ($node->name->toString() !== MethodName::CONSTRUCTOR) {
