@@ -100,7 +100,7 @@ CODE_SAMPLE
 
     private function containsVarAnnotationInDoc(Doc $docComment): bool
     {
-        return 1 === preg_match(self::VAR_TAG_REGEX, $docComment->getText());
+        return preg_match(self::VAR_TAG_REGEX, $docComment->getText()) === 1;
     }
 
     private function createErrorMessage(Property $node, string $className): string

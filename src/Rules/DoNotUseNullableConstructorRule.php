@@ -1,9 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
-
 namespace Ssch\Typo3PhpstanRules\Rules;
-
 
 use PhpParser\Node;
 use PhpParser\Node\Identifier;
@@ -18,7 +17,6 @@ use Symplify\PackageBuilder\ValueObject\MethodName;
 
 final class DoNotUseNullableConstructorRule implements Rule
 {
-
     public function getNodeType(): string
     {
         return ClassMethod::class;
@@ -29,12 +27,12 @@ final class DoNotUseNullableConstructorRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
-        if($node->name->toString() !== MethodName::CONSTRUCTOR) {
+        if ($node->name->toString() !== MethodName::CONSTRUCTOR) {
             return [];
         }
 
         foreach ($node->params as $param) {
-            if($this->shouldSkipParam($param)) {
+            if ($this->shouldSkipParam($param)) {
                 continue;
             }
 
@@ -56,11 +54,11 @@ final class DoNotUseNullableConstructorRule implements Rule
 
         if ($param->type instanceof UnionType) {
             foreach ($param->type->types as $type) {
-                if(!$type instanceof Identifier) {
+                if (! $type instanceof Identifier) {
                     continue;
                 }
 
-                if($type->name !== 'null') {
+                if ($type->name !== 'null') {
                     continue;
                 }
 

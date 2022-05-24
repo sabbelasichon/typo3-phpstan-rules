@@ -93,12 +93,12 @@ CODE_SAMPLE
 
     private function shouldSkipProperty(Property $property): bool
     {
-        if (null === $property->type) {
+        if ($property->type === null) {
             return true;
         }
 
         $propertyProperty = $property->props[0];
 
-        return null !== $propertyProperty->default;
+        return $propertyProperty->default !== null;
     }
 }
