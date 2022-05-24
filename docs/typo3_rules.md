@@ -1,4 +1,4 @@
-# 7 Rules Overview
+# 8 Rules Overview
 
 ## DoNotUseConstantsInConfigurationFilesRule
 
@@ -86,6 +86,28 @@ __DIR__ . '/Resources/Private/Templates/Template.html;
 
 ```php
 TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('my_extension') . '/Resources/Private/Templates/Template.html;
+```
+
+:+1:
+
+<br>
+
+## DoNotUseNullableConstructorRule
+
+Do not use nullable constructor arguments for classes
+
+- class: [`Ssch\Typo3PhpstanRules\Rules\DoNotUseNullableConstructorRule`](../src/Rules/DoNotUseNullableConstructorRule.php)
+
+```php
+public function __construct(?MyService $myService = null)
+```
+
+:x:
+
+<br>
+
+```php
+public function __construct(MyService $myService)
 ```
 
 :+1:
