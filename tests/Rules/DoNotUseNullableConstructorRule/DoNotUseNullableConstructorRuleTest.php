@@ -35,12 +35,12 @@ final class DoNotUseNullableConstructorRuleTest extends RuleTestCase
     {
         yield [
             __DIR__ . '/Fixture/ClassWithNullableConstructor.php',
-            [['Do not use nullable argument in constructor', 12]],
+            [[DoNotUseNullableConstructorRule::MESSAGE, 12]],
         ];
 
         yield [
             __DIR__ . '/Fixture/ClassWithNullableUnionTypeConstructor.php',
-            [['Do not use nullable argument in constructor', 12]],
+            [[DoNotUseNullableConstructorRule::MESSAGE, 12]],
         ];
     }
 

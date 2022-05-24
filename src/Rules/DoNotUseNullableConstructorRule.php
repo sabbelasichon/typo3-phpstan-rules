@@ -20,11 +20,19 @@ use Symplify\PackageBuilder\ValueObject\MethodName;
  */
 final class DoNotUseNullableConstructorRule implements Rule
 {
+    /**
+     * @var string
+     */
+    public const MESSAGE = 'Do not use nullable argument in constructor';
+
     public function getNodeType(): string
     {
         return ClassMethod::class;
     }
 
+    /**
+     * @param ClassMethod $node
+     */
     public function processNode(Node $node, Scope $scope): array
     {
         if ($node->name->toString() !== MethodName::CONSTRUCTOR) {
@@ -36,7 +44,7 @@ final class DoNotUseNullableConstructorRule implements Rule
                 continue;
             }
 
-            return ['Do not use nullable argument in constructor'];
+            return [self::MESSAGE];
         }
 
         return [];
