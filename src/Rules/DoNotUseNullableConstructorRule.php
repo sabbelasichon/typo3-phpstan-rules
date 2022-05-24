@@ -14,11 +14,14 @@ use PhpParser\Node\UnionType;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use Symplify\PackageBuilder\ValueObject\MethodName;
+use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
+use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
+use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @implements Rule<ClassMethod>
  */
-final class DoNotUseNullableConstructorRule implements Rule
+final class DoNotUseNullableConstructorRule implements Rule, DocumentedRuleInterface
 {
     /**
      * @var string
@@ -48,6 +51,19 @@ final class DoNotUseNullableConstructorRule implements Rule
         }
 
         return [];
+    }
+
+    public function getRuleDefinition(): \Symplify\RuleDocGenerator\ValueObject\RuleDefinition
+    {
+        return new RuleDefinition('Do not use nullable constructor arguments for classes', [
+            new CodeSample(
+                <<<'CODE_SAMPLE'
+public function __construct(?MyService $myService = null)
+CODE_SAMPLE
+                ,
+                'public function __construct(MyService $myService)'
+            ),
+        ]);
     }
 
     private function shouldSkipParam(Param $param): bool
