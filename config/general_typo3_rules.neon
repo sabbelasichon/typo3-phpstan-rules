@@ -80,6 +80,9 @@ services:
         arguments:
             forbiddenFunctions:
                 - eval
+                - header
+                - exit
+                - echo
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenNodeRule
         tags: [phpstan.rules.rule]
