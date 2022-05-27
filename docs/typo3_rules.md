@@ -94,7 +94,7 @@ TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('my_extension') . '/R
 
 ## DoNotUseNullableConstructorRule
 
-Do not use nullable constructor arguments for classes
+Do not use nullable constructor arguments for classes. Use Symfony Dependency Injection Configuration properly.
 
 - class: [`Ssch\Typo3PhpstanRules\Rules\DoNotUseNullableConstructorRule`](../src/Rules/DoNotUseNullableConstructorRule.php)
 
