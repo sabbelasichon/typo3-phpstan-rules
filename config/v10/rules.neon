@@ -1,7 +1,4 @@
-services:
-    -
-        class: Symplify\PHPStanRules\Rules\NoFactoryInConstructorRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Ssch\Typo3PhpstanRules\Rules\MissingDefaultValueForTypedPropertyRule
-        tags: [phpstan.rules.rule]
+rules:
+    - Symplify\PHPStanRules\Rules\NoFactoryInConstructorRule
+    - Ssch\Typo3PhpstanRules\Rules\MissingDefaultValueForTypedPropertyRule
+    - Ssch\Typo3PhpstanRules\Rules\DoNotUseNullableConstructorRule
