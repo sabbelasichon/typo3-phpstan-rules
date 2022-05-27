@@ -26,7 +26,7 @@ final class DoNotUseNullableConstructorRule implements Rule, DocumentedRuleInter
     /**
      * @var string
      */
-    public const MESSAGE = 'Do not use nullable argument in constructor';
+    public const MESSAGE = 'Do not use nullable argument in constructor. Use Symfony Dependency Injection';
 
     public function getNodeType(): string
     {
@@ -53,17 +53,21 @@ final class DoNotUseNullableConstructorRule implements Rule, DocumentedRuleInter
         return [];
     }
 
-    public function getRuleDefinition(): \Symplify\RuleDocGenerator\ValueObject\RuleDefinition
+    public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition('Do not use nullable constructor arguments for classes', [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
+        return new RuleDefinition(
+            'Do not use nullable constructor arguments for classes. Use Symfony Dependency Injection Configuration properly.',
+            [
+                new CodeSample(
+                    <<<'CODE_SAMPLE'
 public function __construct(?MyService $myService = null)
 CODE_SAMPLE
-                ,
-                'public function __construct(MyService $myService)'
-            ),
-        ]);
+                    ,
+                    'public function __construct(MyService $myService)'
+                ),
+
+            ]
+        );
     }
 
     private function shouldSkipParam(Param $param): bool

@@ -1,73 +1,33 @@
+rules:
+    - Symplify\PHPStanRules\Rules\UppercaseConstantRule
+    - Symplify\PHPStanRules\Rules\AnnotateRegexClassConstWithRegexLinkRule
+    - Symplify\PHPStanRules\Rules\CheckNotTestsNamespaceOutsideTestsDirectoryRule
+    - Symplify\PHPStanRules\Rules\CheckOptionArgumentCommandRule
+    - Symplify\PHPStanRules\Rules\CheckParentChildMethodParameterTypeCompatibleRule
+    - Symplify\PHPStanRules\Rules\ConstantMapRuleRule
+    - Symplify\PHPStanRules\Rules\ForbiddenReturnValueOfIncludeOnceRule
+    - Symplify\PHPStanRules\Rules\MatchingTypeConstantRule
+    - Symplify\PHPStanRules\Rules\NoDefaultExceptionRule
+    - Symplify\PHPStanRules\Rules\NoDynamicNameRule
+    - Symplify\PHPStanRules\Rules\NoDynamicPropertyOnStaticCallRule
+    - Symplify\PHPStanRules\Rules\NoFuncCallInMethodCallRule
+    - Symplify\PHPStanRules\Rules\NoInlineStringRegexRule
+    - Symplify\PHPStanRules\Rules\NoModifyAndReturnSelfObjectRule
+    - Symplify\PHPStanRules\Rules\NoParentMethodCallOnEmptyStatementInParentMethodRule
+    - Symplify\PHPStanRules\Rules\PrefixAbstractClassRule
+    - Symplify\PHPStanRules\Rules\PreventDoubleSetParameterRule
+    - Symplify\PHPStanRules\Rules\PreventParentMethodVisibilityOverrideRule
+    - Symplify\PHPStanRules\Rules\RequireThisCallOnLocalMethodRule
+    - Symplify\PHPStanRules\Rules\RequiredAbstractClassKeywordRule
+    - Symplify\PHPStanRules\Rules\SuffixInterfaceRule
+    - Symplify\PHPStanRules\Rules\SuffixTraitRule
+    - Ssch\Typo3PhpstanRules\Rules\DoNotUseDeclareInConfigurationFilesRule
+    - Ssch\Typo3PhpstanRules\Rules\DoNotUseMagicConstantFileAndDirInConfigurationFilesRule
+    - Ssch\Typo3PhpstanRules\Rules\DoNotUseUseInConfigurationFilesRule
+    - Ssch\Typo3PhpstanRules\Rules\DoNotExtendInternalClassRule
+    - Ssch\Typo3PhpstanRules\Rules\DoNotUseConstantsInConfigurationFilesRule
+
 services:
-    -
-        class: Symplify\PHPStanRules\Rules\UppercaseConstantRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\AnnotateRegexClassConstWithRegexLinkRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\CheckNotTestsNamespaceOutsideTestsDirectoryRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\CheckOptionArgumentCommandRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\CheckParentChildMethodParameterTypeCompatibleRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\ConstantMapRuleRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\ForbiddenReturnValueOfIncludeOnceRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\MatchingTypeConstantRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\NoDefaultExceptionRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\NoDynamicNameRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\NoDynamicPropertyOnStaticCallRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\NoFuncCallInMethodCallRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\NoInlineStringRegexRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\NoModifyAndReturnSelfObjectRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\NoParentMethodCallOnEmptyStatementInParentMethodRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\PrefixAbstractClassRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\PreventDoubleSetParameterRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\PreventParentMethodVisibilityOverrideRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\RegexSuffixInRegexConstantRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\RequireThisCallOnLocalMethodRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\RequiredAbstractClassKeywordRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\SuffixInterfaceRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Symplify\PHPStanRules\Rules\SuffixTraitRule
-        tags: [phpstan.rules.rule]
     -
         class: Symplify\PHPStanRules\Rules\ClassNameRespectsParentSuffixRule
         tags: [phpstan.rules.rule]
@@ -109,15 +69,3 @@ services:
         tags: [phpstan.rules.rule]
         arguments:
             maxNewClassNesting: 2
-    -
-        class: Ssch\Typo3PhpstanRules\Rules\DoNotUseDeclareInConfigurationFilesRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Ssch\Typo3PhpstanRules\Rules\DoNotUseMagicConstantFileAndDirInConfigurationFilesRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Ssch\Typo3PhpstanRules\Rules\DoNotUseUseInConfigurationFilesRule
-        tags: [phpstan.rules.rule]
-    -
-        class: DoNotUseConstantsInConfigurationFilesRule
-        tags: [phpstan.rules.rule]

@@ -1,7 +1,3 @@
-services:
-    -
-        class: Ssch\Typo3PhpstanRules\Rules\MissingVarAnnotationForPropertyInEntityClassRule
-        tags: [phpstan.rules.rule]
-    -
-        class: Ssch\Typo3PhpstanRules\Rules\MissingDefaultValueForTypedPropertyRule
-        tags: [phpstan.rules.rule]
+rules:
+    - Ssch\Typo3PhpstanRules\Rules\MissingVarAnnotationForPropertyInEntityClassRule
+    - Ssch\Typo3PhpstanRules\Rules\MissingDefaultValueForTypedPropertyRule
