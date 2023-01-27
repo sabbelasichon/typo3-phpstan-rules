@@ -1,4 +1,4 @@
-# 8 Rules Overview
+# 7 Rules Overview
 
 ## DoNotUseConstantsInConfigurationFilesRule
 
@@ -64,28 +64,6 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php'][
 
 ```php
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess']['my_extension_key'] = \Prefix\MyExtension\PageRendererHooks::class . '->renderPreProcess';
-```
-
-:+1:
-
-<br>
-
-## DoNotUseMagicConstantFileAndDirInConfigurationFilesRule
-
-Do not use __FILE__ constant in ext_localconf.php or ext_tables.php
-
-- class: [`Ssch\Typo3PhpstanRules\Rules\DoNotUseMagicConstantFileAndDirInConfigurationFilesRule`](../src/Rules/DoNotUseMagicConstantFileAndDirInConfigurationFilesRule.php)
-
-```php
-__DIR__ . '/Resources/Private/Templates/Template.html;
-```
-
-:x:
-
-<br>
-
-```php
-TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('my_extension') . '/Resources/Private/Templates/Template.html;
 ```
 
 :+1:
