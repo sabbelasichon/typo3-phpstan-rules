@@ -10,11 +10,8 @@ use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
 
 final class EntityClassDetector
 {
-    private ReflectionProvider $reflectionProvider;
-
-    public function __construct(ReflectionProvider $reflectionProvider)
+    public function __construct(private ReflectionProvider $reflectionProvider)
     {
-        $this->reflectionProvider = $reflectionProvider;
     }
 
     public function isInsideExtbaseEntity(Class_ $node): bool

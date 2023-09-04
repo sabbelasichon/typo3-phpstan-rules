@@ -10,8 +10,21 @@ final class FileResolver
 {
     public function isConfigurationFile(Scope $scope): bool
     {
-        $fileName = basename($scope->getFile());
+        return $this->isExtTablesFile($scope) || $this->isExtLocalConfFile($scope);
+    }
 
-        return $fileName === 'ext_tables.php' || $fileName === 'ext_localconf.php';
+    public function isExtTablesFile(Scope $scope): bool
+    {
+        return $this->getFileNameFromScope($scope) === 'ext_tables.php';
+    }
+
+    private function isExtLocalConfFile(Scope $scope): bool
+    {
+        return $this->getFileNameFromScope($scope) === 'ext_localconf.php';
+    }
+
+    private function getFileNameFromScope(Scope $scope): string
+    {
+        return basename($scope->getFile());
     }
 }
